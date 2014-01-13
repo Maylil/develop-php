@@ -56,7 +56,7 @@
 	  $outputstring = $date."\t".$tireqty." tires \t".$oilqty." oil\t"
  	  								.$sparkqty." spark plugs\t\$".$totalamount."\t".$find."\n";
 	  
- 	  @ $fp = fopen($DOCUMENT_ROOT.'/../orders/orders.txt', 'ab');
+ 	  /* @ $fp = fopen($DOCUMENT_ROOT.'/../orders/orders.txt', 'ab');
  	  //@ $fp = fopen('orders/orders.txt', 'ab');
 	  if(!$fp){
 			echo '<p><strong>Your order could not be processed at this time.'
@@ -66,7 +66,12 @@
 		flock($fp,LOCK_EX);
 		fwrite($fp, $outputstring,strlen($outputstring));
 		flock($fp, LOCK_UN);
-		fclose($fp);
+		fclose($fp); */
+	  /**
+	   file_put_contents() 函数把一个字符串写入文件中。
+				与依次调用 fopen()，fwrite() 以及 fclose() 功能一样。 
+	  */
+	  file_put_contents($DOCUMENT_ROOT.'/../orders/orders.txt', $outputstring,FILE_APPEND);
 		echo '<p>Order written.</p>';
 // 	  $taxrate = 0.10;  // local sales tax is 10%
 // 	  $totalamount = $totalamount * (1 + $taxrate);
